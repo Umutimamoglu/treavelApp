@@ -1,20 +1,17 @@
 import axios from 'axios';
 import { RAPIDAPI_KEY } from '@env';
 
-export const getPlacesData = async () => {
+export const getPlacesData = async (bl_lat, bl_lng, tr_lat, tr_lng, type) => {
     const options = {
         method: 'GET',
-        url: 'https://travel-advisor.p.rapidapi.com/restaurants/list-in-boundary',
+        url: `https://travel-advisor.p.rapidapi.com/${type}/list-in-boundary`,
         params: {
-            bl_latitude: '11.847676',
-            tr_latitude: '12.838442',
-            bl_longitude: '109.095887',
-            tr_longitude: '109.149359',
-            restaurant_tagcategory_standalone: '10591',
-            restaurant_tagcategory: '10591',
+            bl_latitude: bl_lat ? bl_lat : '11.847676',
+            tr_latitude: tr_lat ? tr_lat : '12.838442',
+            bl_longitude: bl_lng ? bl_lng : '109.095887',
+            tr_longitude: tr_lng ? tr_lng : '109.149359',
             limit: '30',
             currency: 'USD',
-            open_now: 'false',
             lunit: 'km',
             lang: 'en_US'
         },
