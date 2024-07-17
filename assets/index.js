@@ -3,3 +3,4 @@ export { default as AvatarImage } from './avatar.png';
 export { default as Hotels } from './hotel.jpg';
 export { default as Attractions } from './instracrion.png';
 export { default as Resturants } from './resturant.jpg';
+export { default as SadIcon } from './sadIcon.jpg';
