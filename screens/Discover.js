@@ -1,12 +1,16 @@
-import { SafeAreaView, StyleSheet, Text, View, Image } from 'react-native'
-import React, { useLayoutEffect } from 'react'
+import { SafeAreaView, StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
+import React, { useLayoutEffect, useState } from 'react'
 import { useNavigation } from '@react-navigation/native';
-import { AvatarImage } from '../assets/index';
+import { Attractions, AvatarImage, Hotels, Resturants } from '../assets/index';
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+import { ScrollView } from 'react-native';
+import MenuContainer from '../components/MenuContainer';
+import { AntDesign } from '@expo/vector-icons';
 
 const Discover = () => {
 
     const navigation = useNavigation();
-
+    const [type, setType] = useState("restaurants")
     useLayoutEffect(() => {
         navigation.setOptions({
             headerShown: false,
@@ -28,7 +32,69 @@ const Discover = () => {
                     />
 
                 </View>
+
             </View>
+            <View className="flex-row items-center bg-white mx-4 rounded-xl py-1 px-4 shadow-lg mt-4">
+                <GooglePlacesAutocomplete
+                    GooglePlacesDetailsQuery={{ fields: "geometry" }}
+                    placeholder='Search'
+                    fetchDetails={true}
+                    onPress={(data, details = null) => {
+                        // 'details' is provided when fetchDetails = true
+                        console.log(details?.geometry?.viewport);
+                    }}
+                    query={{
+                        key: 'AIzaSyCQAzUuXmamdJpaR8ypgeB2ezjX7GJxCR4',
+                        language: 'en',
+                    }}
+                />
+
+            </View>
+            <ScrollView>
+                <View className="flex-row items-center justify-between px-8 mt-8" >
+                    <MenuContainer
+                        key={"hotel"}
+                        title="Hotels"
+                        imageSrc={Hotels}
+                        type={type}
+                        setType={setType}
+
+                    />
+                    <MenuContainer
+                        key={"attractions"}
+                        title="Attractions"
+                        imageSrc={Attractions}
+                        type={type}
+                        setType={setType}
+
+                    />
+                    <MenuContainer
+                        key={"resturants"}
+                        title="Resturants"
+                        imageSrc={Resturants}
+                        type={type}
+                        setType={setType}
+
+                    />
+
+                </View>
+                <View>
+                    <View className="flex-row items-center justify-between px-4 mt-8">
+                        <Text className="text-[#2c7379] text-[28px] font-bold">Top Tips
+                        </Text>
+                        <TouchableOpacity className="flex-row items-center justify-center space-x-2">
+                            <Text className="text-[#a0c4c7] text-[20px] font-bold">
+                                Keşfet
+                            </Text>
+                            <AntDesign name="arrowright" size={24} color="black" />
+                        </TouchableOpacity>
+                    </View>
+                    <View className="px-4 mt-8 flex-row items-center justify-evenly flex-wrap">
+                        <ItemCardContanier key={"101"} imageSrc={"https://cdn.pixabay.com/photo/2020/01/03/13/24/stockholm-4738105_1280.jpg"} title="Something" location="Isvec" />
+                        <ItemCardContanier key={"101"} imageSrc={"https://cdn.pixabay.com/photo/2019/09/15/14/35/city-4478471_1280.jpg"} title="Sample" location="LOndon" />
+                    </View>
+                </View>
+            </ScrollView>
         </SafeAreaView>
     )
 }
