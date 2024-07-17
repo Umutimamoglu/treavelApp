@@ -6,7 +6,7 @@ import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplet
 import { ScrollView } from 'react-native';
 import MenuContainer from '../components/MenuContainer';
 import { AntDesign } from '@expo/vector-icons';
-
+import ItemCardContanier from '../components/ItemCardContainer'
 const Discover = () => {
 
     const navigation = useNavigation();
@@ -89,9 +89,9 @@ const Discover = () => {
                             <AntDesign name="arrowright" size={24} color="black" />
                         </TouchableOpacity>
                     </View>
-                    <View className="px-4 mt-8 flex-row items-center justify-evenly flex-wrap">
-                        <ItemCardContanier key={"101"} imageSrc={"https://cdn.pixabay.com/photo/2020/01/03/13/24/stockholm-4738105_1280.jpg"} title="Something" location="Isvec" />
-                        <ItemCardContanier key={"101"} imageSrc={"https://cdn.pixabay.com/photo/2019/09/15/14/35/city-4478471_1280.jpg"} title="Sample" location="LOndon" />
+                    <View className="px-4 mt-8 flex-row items-center justify-evenly ">
+                        <ItemCardContanier key={"101"} imageSrc={"https://cdn.pixabay.com/photo/2020/01/03/13/24/stockholm-4738105_1280.jpg"} title="bir seyler baya buyukk" location="Isvec" />
+                        <ItemCardContanier key={"102"} imageSrc={"https://cdn.pixabay.com/photo/2019/09/15/14/35/city-4478471_1280.jpg"} title="Sample" location="LOndon" />
                     </View>
                 </View>
             </ScrollView>
